@@ -1,7 +1,7 @@
 ﻿namespace Rebus.Etcd.Responses
 {
     //  {"etcdserver":"3.1.0-alpha.0","etcdcluster":"3.1.0"}
-    public class VersionResponse
+    class VersionResponse
     {
         public VersionResponse(string etcdserver, string etcdcluster)
         {

@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Rebus.Etcd.Responses;
 
-namespace Rebus.Etcd
+namespace Rebus.Etcd.Client
 {
-    public class EtcdClient : IDisposable
+    class EtcdClient : IDisposable
     {
         readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
         {

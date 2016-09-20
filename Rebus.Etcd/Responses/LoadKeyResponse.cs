@@ -1,6 +1,6 @@
 ﻿namespace Rebus.Etcd.Responses
 {
-    public class LoadKeyResponse
+    class LoadKeyResponse
     {
         public GetKeyResult Node { get; }
 
@@ -10,7 +10,7 @@
         }
     }
 
-    public class GetKeyResult
+    class GetKeyResult
     {
         public GetKeyResult(string key, string value, int modifiedIndex, int createdIndex)
         {

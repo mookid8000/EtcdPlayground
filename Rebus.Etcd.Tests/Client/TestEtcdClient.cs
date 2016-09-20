@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Rebus.Etcd;
+using Rebus.Etcd.Client;
 
-namespace Tests
+namespace Rebus.Etcd.Tests.Client
 {
     [TestFixture]
     public class TestEtcdClient : FixtureBase

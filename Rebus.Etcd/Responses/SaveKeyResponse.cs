@@ -1,7 +1,7 @@
 ﻿namespace Rebus.Etcd.Responses
 {
     // {"action":"set","node":{"key":"/test","value":"","modifiedIndex":10,"createdIndex":10},"prevNode":{"key":"/test","value":"","modifiedIndex":9,"createdIndex":9}}
-    public class SaveKeyResponse
+    class SaveKeyResponse
     {
         public SaveKeyResponse(string action, SaveKeyResponseNode node)
         {
@@ -14,7 +14,7 @@
         public SaveKeyResponseNode Node { get; }
     }
 
-    public class SaveKeyResponseNode
+    class SaveKeyResponseNode
     {
         public SaveKeyResponseNode(int createdIndex, int modifiedIndex, string value, string key)
         {
@@ -30,7 +30,7 @@
         public int CreatedIndex { get; }
     }
 
-    public class SaveKeyResponseNodeWithPrevious : SaveKeyResponseNode
+    class SaveKeyResponseNodeWithPrevious : SaveKeyResponseNode
     {
         public SaveKeyResponseNodeWithPrevious(int createdIndex, int modifiedIndex, string value, string key, SaveKeyResponseNode prevNode)
             : base(createdIndex, modifiedIndex, value, key)

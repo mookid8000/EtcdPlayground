@@ -4,17 +4,17 @@ using System.Linq;
 namespace Rebus.Etcd.Responses
 {
     // {"action":"get","node":{"dir":true,"nodes":[{"key":"/test","value":"","modifiedIndex":9,"createdIndex":9}]}}
-    public class ListKeysResponse
+    class ListKeysResponse
     {
         public ListKeysResponse(ListKeysResponseNode node)
         {
             Node = node;
         }
 
-        public ListKeysResponseNode Node { get;  }
+        public ListKeysResponseNode Node { get; }
     }
 
-    public class ListKeysResponseNode
+    class ListKeysResponseNode
     {
         public ListKeysResponseNode(IEnumerable<ListKeysResult> nodes)
         {
@@ -24,7 +24,7 @@ namespace Rebus.Etcd.Responses
         public ListKeysResult[] Nodes { get; }
     }
 
-    public class ListKeysResult
+    class ListKeysResult
     {
         public ListKeysResult(string key, string value, int modifiedIndex, int createdIndex)
         {
@@ -34,7 +34,7 @@ namespace Rebus.Etcd.Responses
             CreatedIndex = createdIndex;
         }
 
-        public string Key { get;  }
+        public string Key { get; }
         public string Value { get; }
         public int ModifiedIndex { get; }
         public int CreatedIndex { get; }
