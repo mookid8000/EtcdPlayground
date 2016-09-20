@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\EtcdClient.cs" />
+    <Compile Include="Client\Key.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\ListKeysResponse.cs" />
     <Compile Include="Responses\LoadKeyResponse.cs" />

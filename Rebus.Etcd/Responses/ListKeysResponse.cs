@@ -26,17 +26,19 @@ namespace Rebus.Etcd.Responses
 
     class ListKeysResult
     {
-        public ListKeysResult(string key, string value, int modifiedIndex, int createdIndex)
+        public ListKeysResult(string key, string value, int modifiedIndex, int createdIndex, bool dir)
         {
             Key = key;
             Value = value;
             ModifiedIndex = modifiedIndex;
             CreatedIndex = createdIndex;
+            Dir = dir;
         }
 
         public string Key { get; }
         public string Value { get; }
         public int ModifiedIndex { get; }
         public int CreatedIndex { get; }
+        public bool Dir { get; }
     }
 }

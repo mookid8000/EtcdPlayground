@@ -42,14 +42,14 @@ namespace Rebus.Etcd.Client
             return response?.Node?.Value;
         }
 
-        public async Task<string[]> LoadKeys()
+        public async Task<Key[]> LoadKeys(string parentKey = null)
         {
-            var jsonText = await Get<ListKeysResponse>("/v2/keys");
+            var jsonText = await Get<ListKeysResponse>(parentKey == null ? "/v2/keys" : $"/v2/keys/{parentKey}");
 
             return jsonText?.Node
-                       .Nodes.Select(n => n.Key)
+                       .Nodes.Select(n => new Key(n.Key, n.Dir))
                        .ToArray()
-                   ?? new string[0];
+                   ?? new Key[0];
         }
 
         string GetUrl(string key)
@@ -77,14 +77,14 @@ namespace Rebus.Etcd.Client
         {
             var url = $"{_url}/{relativeUrl}";
             var responseText = await _client.GetStringAsync(url);
-
+            Console.WriteLine(responseText);
             try
             {
                 return JsonConvert.DeserializeObject<TResponse>(responseText, _serializerSettings);
             }
             catch (Exception exception)
             {
-                throw new FormatException($"Could not parse JSON response as {typeof(TResponse)}: '{responseText}'", exception);
+                throw new FormatException($"Could not parse JSON response from {url} as {typeof(TResponse)}: '{responseText}'", exception);
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Rebus.Etcd.Client;
+using Rebus.Etcd.Tests.Extensions;
 
 namespace Rebus.Etcd.Tests.Client
 {
@@ -16,11 +17,14 @@ namespace Rebus.Etcd.Tests.Client
         }
 
         [Test]
-        public async Task CanDoIt()
+        public async Task CanGetVersion()
         {
             var version = await _client.GetVersion();
 
-            Console.WriteLine($"Version is {version.Etcdcluster} (cluster) / {version.Etcdserver} (server)");
+            version.Dump();
+
+            Assert.That(version.Etcdserver, Is.EqualTo("3.1.0-alpha.0"));
+            Assert.That(version.Etcdcluster, Is.EqualTo("3.1.0"));
         }
 
         [Test]
@@ -42,9 +46,19 @@ namespace Rebus.Etcd.Tests.Client
         {
             var keys = await _client.LoadKeys();
 
-            Console.WriteLine($@"KEYS:
+            keys.Dump();
+        }
 
-{string.Join(Environment.NewLine, keys)}");
+        [Test]
+        public async Task CanListChildKeys()
+        {
+            await _client.Save("/test3/key1", "hey");
+            await _client.Save("/test3/key2", "hey");
+            await _client.Save("/test3/key3", "hey");
+
+            var keys = await _client.LoadKeys("/test3");
+
+            keys.Dump();
         }
     }
 }
