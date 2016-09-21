@@ -50,6 +50,14 @@ namespace Rebus.Etcd.Tests.Client
         }
 
         [Test]
+        public async Task GetsNullWhenLoadingNonExistentKey()
+        {
+            var shouldBeNull = await _client.Load(Guid.NewGuid().ToString());
+
+            Assert.That(shouldBeNull, Is.EqualTo(null));
+        }
+
+        [Test]
         public async Task CanListChildKeys()
         {
             await _client.Save("/test3/key1", "hey");

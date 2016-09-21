@@ -7,7 +7,7 @@
     <ProjectGuid>{BCF3D5DF-82B5-4252-91C5-35E8ABFC18BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rebus.Etcd</RootNamespace>
+    <RootNamespace>Rebus</RootNamespace>
     <AssemblyName>Rebus.Etcd</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -34,6 +34,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rebus, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rebus.2.0.1\lib\NET45\Rebus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -45,17 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\EtcdClient.cs" />
-    <Compile Include="Client\Key.cs" />
+    <Compile Include="Config\EtcdRoutingConfigurationExtensions.cs" />
+    <Compile Include="Etcd\Client\EtcdClient.cs" />
+    <Compile Include="Etcd\Client\Key.cs" />
+    <Compile Include="Etcd\Router\EtcdRouter.cs" />
+    <Compile Include="Etcd\Router\TypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\ListKeysResponse.cs" />
-    <Compile Include="Responses\LoadKeyResponse.cs" />
-    <Compile Include="Responses\SaveKeyResponse.cs" />
-    <Compile Include="Responses\VersionResponse.cs" />
+    <Compile Include="Etcd\Responses\ListKeysResponse.cs" />
+    <Compile Include="Etcd\Responses\LoadKeyResponse.cs" />
+    <Compile Include="Etcd\Responses\SaveKeyResponse.cs" />
+    <Compile Include="Etcd\Responses\VersionResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

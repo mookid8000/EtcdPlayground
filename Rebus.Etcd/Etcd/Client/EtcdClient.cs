@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -76,8 +77,15 @@ namespace Rebus.Etcd.Client
         async Task<TResponse> Get<TResponse>(string relativeUrl)
         {
             var url = $"{_url}/{relativeUrl}";
-            var responseText = await _client.GetStringAsync(url);
-            Console.WriteLine(responseText);
+            var response = await _client.GetAsync(url);
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return default(TResponse);
+            }
+
+            var responseText = await response.Content.ReadAsStringAsync();
+
             try
             {
                 return JsonConvert.DeserializeObject<TResponse>(responseText, _serializerSettings);
